@@ -13,6 +13,7 @@ class BaseConfig:
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")  # 自动选择 GPU/CPU
 
     save_dir = './saved_models'                                   # 模型保存目录
+    log_dir = './logs'                                            # 训练日志（CSV）保存目录
 
     # ---- 训练超参数 ----
     batch_size = 64                                               # 有标签数据的批次大小
@@ -29,6 +30,8 @@ class BaseConfig:
     epochs = 50                                                   # 训练总轮数
     steps_per_epoch = 1024                                        # 每 epoch 的训练步数
     # 总训练步数 = 50 * 1024 = 51200
+    warmup_steps = 0                                              # 学习率 warmup 步数（设为 0 则跳过 warmup）
+    ema_decay = 0.999                                             # EMA 模型衰减率（设为 0 则禁用 EMA）
 
 
 class Config40(BaseConfig):
